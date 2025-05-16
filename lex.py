@@ -133,7 +133,11 @@ def t_error(t):
 # cria o analisador lexico
 lexer = lex.lex()
 
-# funcao para testar e imprimir a tabela de sibolos e lista de tokens
+# função para encontrar coluna
+def find_column(line, token_start, word):
+    return line.find(word, token_start)
+
+# funcao para testar o lexer e imprimir os tokens
 def test_lexer(code):
     lexer.lineno = 1
     all_lines = code.split('\n')
@@ -141,16 +145,22 @@ def test_lexer(code):
 
     # adiciona espaco antes e depois das pontuacoes 
     code = re.sub(r'([\,\(\)\.\-\+\=\/])', r' \1 ', code)
-    
+
     for lineno, line in enumerate(code.splitlines()):
-        # remove os comentarios da linha
+        original_line = line  # linha original sem substituições
         line = re.sub(r'#.*', '', line)
-        
-        for word in line.split():
+        words = line.split()
+        pos = 0  # posição atual para buscar coluna
+
+        for word in words:
+            col = find_column(original_line, pos, word)
+            pos = col + len(word)  # atualiza a posição
+
             lexer.input(word)
             tok = lexer.token()
             if tok:
                 tok.lineno = lineno + 1
+                tok.col = col + 1  # coluna começa em 1
                 line_tokens[lineno].append(tok)
 
     # imprime a tabela de simbolos
@@ -159,34 +169,38 @@ def test_lexer(code):
     for s in symbol_list:
         print(f"{s['id']:<5}{s['tipo']:<12}{s['valor']}")
 
-    # imprime a lista de tokens
+    # imprime a lista de tokens no formato <tipo, linha, coluna, id>
     print("\n--- Lista de Tokens ---")
     for tokens in line_tokens:
         if tokens:
             for tok in tokens:
                 idx = next((s['id'] for s in symbol_list if s['valor'] == str(tok.value)), -1)
-                print(f"<{tok.type}, {tok.lineno - 1}, {idx}>", end=" ")
+                print(f"<{tok.type}, {tok.lineno - 1}, {tok.col}, {idx}>", end=" ")
             print()
-
 
 # exemplo para teste
 teste_elgol = '''
-inteiro _Soma (inteiro Num, inteiro Dois) .
+# Linguagem Elgol
+# autor Elgio Schlemer
+# sem erros
+inteiro _Fazalgo (inteiro Fazum, inteiro Fazdois) .
 inicio .
-    elgio = Num + Dois .
+   inteiro Lixo .
+   
+   Lixo = Fazum x Fazdois + zero .
+   elgio = Lixo .
 fim .
- 
-inteiro Lixo . # minha variável
-inteiro Teste .
-inteiro Vi     
-Lixo = 34 .
-comp Lixo .
-se Lixo maior zero .
-entao.
-inicio.
-        Lixo = zero .
-        Teste = 300 
-        Resultado = _Soma (Lixo, Teste) .
+
+# programa principal, fora de função
+# deve começar também com inicio e fim que seriam os
+# { e } do C
+inicio .
+  inteiro Variavel .
+  inteiro Teste .
+  
+  Variavel = zero .
+  Teste = 45 x _Fazalgo (45, Variavel) .  
+  Variavel = Variavel + 3 - 5 x 2 / 2 + Teste .
 fim.
 '''
 
