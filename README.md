@@ -1,2 +1,9 @@
 # Compiladores
 Trabalho de análise léxica e sintática da linguagem "Elgol"
+
+## Observações
+* Colocar diretório do código (.txt) no main.py para testar (exemplos prontos estão na pasta 'exemplos').
+
+* Enquanto existirem erros léxicos no código, o analisador sintático não é iniciado.
+
+* Em algumas situações, pode ser que nem todos os erros sintáticos sejam identificados de primeira, assim que for arrumando os erros, outros vão sendo identificados.

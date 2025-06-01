@@ -1,0 +1,29 @@
+# Linguagem Elgol
+# autor Elgio Schlemer
+# Exemplo 5
+# Muitos erros
+inteiro _Fazalgo (inteiro Fazum, inteiro Fazdois, inteiro Numx).
+inicio.
+   inteiro Lixo.
+   inteiro Lixox.
+   
+   Lixo = Fazum x Fazdois + zero.
+   Fazum = Lixox - Fazdois + 34 - zero x 15 / 3 x 4 - 87 + Fazum.
+   elgio = Fazum + Lixox.
+fim.
+
+inicio.
+  inteiro Variavel.
+  inteiro Teste.
+  inteiro Varx.
+  inteiro Teste.
+  
+  
+  enquanto Varx diferente Variavel.
+  inicio.
+      Varx = Varx x _Fazalgo(Variavel, zero).
+      Teste = 45.
+  fim.
+  
+  Variavel = Variavel + 45 x 3 - 5 x 2 / 2 + Teste x 45. # 45 + 
+fim.

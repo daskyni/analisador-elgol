@@ -1,0 +1,7 @@
+# com erros lexicos
+inteiro _Fazalgo2 (inteiro Fazum, inteiro Faz2) .
+inicio.
+   inteiro Variável .
+   Fazum = 0;
+   Fazum = 45 * 20 .
+fim.

@@ -1,0 +1,28 @@
+# sem erros sintáticos
+inteiro _Fazalgo(inteiro Fazum, inteiro Fazdois).
+inicio.
+   inteiro Lixo.
+   
+   Lixo = Fazum - Fazdois + zero x zero.
+   elgio = Lixo.
+fim.
+
+inicio.
+  inteiro Variavel.
+  inteiro Teste.
+  
+  Variavel = zero.
+  
+  Teste = 45 x _Fazalgo (50, Variavel).
+  
+  se Teste maior zero.
+  entao.
+  inicio.
+    Variavel = Teste x Lixo.
+  fim.
+  senao.
+  inicio.
+  fim.
+  
+  Variavel = Variavel + Nova + 3 - 5 x 2 / 2 + Teste.
+fim.
